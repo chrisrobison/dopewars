@@ -1,0 +1,654 @@
+
+/****************
+*** FACE ********
+****************/
+
+.newgame {
+	position: absolute;
+   top: 10px;
+	left: 20px;
+}
+
+#problemText {
+	text-align: center;
+	color: #eee;
+    text-transform: uppercase;
+    font-weight:bold;
+    margin-bottom:.4em;
+    width:100%;
+}
+
+#face 
+{
+	position: absolute; 
+	top: 43vh; 
+	left: 39vw; 
+	z-Index:10;
+	height: 2em;
+    font-size:18px;
+    border:4px solid #000;
+    z-index:1;
+    background-color:#000b;
+    border-radius:.5em;
+    width:25vw;
+	background-repeat: no-repeat;
+
+}
+
+
+/****************
+*** BOROUGH ********
+****************/
+
+#district {
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:4;
+	width: 20vw;
+    text-align:center;
+
+	height: 35vh;
+   background-color:rgba(0,0,0,.7);
+   border-radius:.5em; 
+}
+#districtName {
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1.3em;
+}
+.status {
+    width:90%;
+    border-collapse:collapse;
+    margin:0.8em auto;
+    background-color:#09fc;
+}
+.status td { padding:0px .25em; margin:0px; border:0px; }
+#cash {
+	text-align: left;
+	//color: green;
+	color: white;
+}
+
+#bank {
+	text-align: left;
+	color: #33FF33;
+}
+
+#shark {
+	text-align: left;
+	color: red;
+}
+
+#districtName {
+	text-align: center;
+	color: white;
+}
+
+#havepockets {
+	text-align: right;
+	color: white;
+}
+
+#havegun {
+	text-align: right;
+	color: white;
+}
+
+#day {
+	text-align: right;
+	color: white;
+}
+
+
+/****************
+*** GAME OVER ********
+****************/
+
+.goImg {
+	position: absolute;
+    top: 25px;
+	left: 25px;
+}
+
+.new {
+	position: absolute;
+        bottom: 50px;
+	right: 96px;
+}
+
+#gameover 
+{
+	display: none;
+	position: absolute; 
+	top: 0px; 
+	left: 0px; 
+	z-Index:10;
+	width: 255px;
+	height: 255px;
+	background-repeat: no-repeat;
+}
+
+#goText {
+	font: 18px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	width: 175px;
+}
+
+#goRank {
+	font: 12px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 100px;
+	left: 40px;
+	width: 175px;
+}
+
+
+#goFinalCash {
+	font: 12px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 80px;
+	left: 40px;
+	width: 175px;
+}
+
+
+
+
+/****************
+*** FUZZ ********
+****************/
+#fuzz 
+{
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:10;
+	width: 255px;
+	height: 255px;
+	background-repeat: no-repeat;
+}
+
+#fuzzText {
+	font: 14px;
+	text-align: center;
+	color: yellow;
+	position: absolute;
+	top: 80px;
+	left: 40px;
+	width: 175px;
+}
+
+.run {
+	position: absolute;
+        bottom: 50px;
+	left: 50px;
+}
+
+.fight {
+	position: absolute;
+        bottom: 50px;
+	right: 50px;
+}
+
+.fok {
+	position: absolute;
+        bottom: 50px;
+	right: 96px;
+}
+
+/****************
+*** POCKETS ********
+****************/
+#pockets 
+{
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:10;
+	width: 255px;
+	height: 255px;
+	background-repeat: no-repeat;
+}
+
+#pocketsText {
+	font: 18px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	width: 175px;
+}
+
+
+/****************
+*** GUN ********
+****************/
+#gun 
+{
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:10;
+	width: 255px;
+	height: 255px;
+	background-repeat: no-repeat;
+}
+
+#gunText {
+	font: 18px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	width: 175px;
+}
+
+
+
+
+
+
+
+/****************
+*** ASK ********
+****************/
+
+
+#ask 
+{
+	display: none;
+	position: absolute; 
+    text-align:center;
+	top: 10%; 
+	left: 40%; 
+	z-Index:4;
+	width: 20vw;
+	height: 25vh;
+    
+	background-repeat: no-repeat;
+}
+
+#askMessageText {
+	font: 1.5em;
+	text-align: center;
+	color: #eee;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+.askImg {
+	position: absolute;
+    top: 25px;
+	left: 25px;
+}
+
+.yes {
+	position: absolute;
+        bottom: 50px;
+	left: 50px;
+}
+
+.no {
+	position: absolute;
+        bottom: 50px;
+	right: 50px;
+}
+
+/****************
+*** MESSAGE ********
+****************/
+
+
+#messageText {
+	font-size: 1.8em;
+    display:inline-block;
+    margin-top:1em;
+	text-align: center;
+	color: #fff;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+#message, .dialog {
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:3;
+	width: 20vw;
+	height: 25vh;
+	background-repeat: no-repeat;
+    background-color:#0009;
+    border:1em solid #c0defd;
+    box-shadow: .5em .5em 1em #0008;
+    color:#fff;
+}
+
+.messageImg {
+        opacity:.8;
+	position: absolute;
+    top: 25px;
+	left: 25px;
+    display:none;
+}
+
+
+
+/****************
+*** FINANCE INSTITUTION ********
+****************/
+
+.fiDoneButton {
+	position: absolute;
+        bottom: 27px;
+	right: 100px;
+}
+
+#fiName {
+        font: 20px;
+        color: white;
+        //font-weight: bold;
+	text-align: left;
+	position: absolute;
+	top: 35px;
+	left: 45px;
+        width: 210px;
+        height: 20px;
+}
+
+
+#fiBalanceInd {
+        font: 12px;
+        color: white;
+        font-weight: bold;
+	text-align: left;
+	position: absolute;
+	top: 75px;
+	left: 30px;
+        width: 210px;
+        height: 20px;
+}
+
+#fiBalance {
+        font: 12px;
+        color: white;
+        //font-weight: bold;
+	text-align: left;
+	position: absolute;
+	top: 90px;
+	left: 30px;
+        width: 210px;
+        height: 20px;
+}
+
+
+
+#fiCashInd {
+        font: 12px;
+        color: white;
+        //font-weight: bold;
+	text-align: right;
+	position: absolute;
+	top: 75px;
+	right: 30px;
+        width: 210px;
+        height: 20px;
+}
+
+#fiCash {
+        font: 12px;
+        color: white;
+        //font-weight: bold;
+	text-align: right;
+	position: absolute;
+	top: 90px;
+	right: 30px;
+        width: 210px;
+        height: 20px;
+}
+
+
+#fi1 {
+	font: 12px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 110px;
+	left: 100px;
+	width: 55px;
+}
+.fi1take {
+   position: absolute;
+   top: 109px;
+   left: 95px;
+}
+.fi1give {
+   position: absolute;
+   top: 109px;
+   left: 145px;
+}
+
+#fi2 {
+	font: 12px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 130px;
+	left: 100px;
+	width: 55px;
+}
+.fi2take {
+   position: absolute;
+   top: 129px;
+   left: 95px;
+}
+.fi2give {
+   position: absolute;
+   top: 129px;
+   left: 145px;
+}
+
+
+#fi3 {
+	font: 12px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 150px;
+	left: 100px;
+	width: 55px;
+}
+.fi3take {
+   position: absolute;
+   top: 149px;
+   left: 95px;
+}
+.fi3give {
+   position: absolute;
+   top: 149px;
+   left: 145px;
+}
+
+
+#fi4 {
+	font: 12px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 170px;
+	left: 100px;
+	width: 55px;
+}
+.fi4take {
+   position: absolute;
+   top: 169px;
+   left: 95px;
+}
+.fi4give {
+   position: absolute;
+   top: 169px;
+   left: 145px;
+}
+
+
+#fi5 {
+	font: 12px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 190px;
+	left: 100px;
+	width: 55px;
+}
+.fi5take {
+   position: absolute;
+   top: 189px;
+   left: 95px;
+}
+.fi5give {
+   position: absolute;
+   top: 189px;
+   left: 145px;
+}
+
+
+
+
+.financialInstitutionImg {
+   position: absolute;
+   top: 25px;
+   left: 25px;
+}
+
+#financialInstitution 
+{
+	display: none;
+	position: absolute; 
+	top: 10%; 
+	left: 40%; 
+	z-Index:10;
+	width: 255px;
+	height: 255px;
+	background-repeat: no-repeat;
+
+}
+
+
+
+/****************
+*** PREFS ********
+****************/
+
+
+#prefs {
+   display: none;
+   position: absolute; 
+   top: 0px; 
+   left: 0px; 
+   width: 255px;
+   height: 255px;        
+   z-Index:20;
+       
+} 
+
+#homeSite {
+    font: 10px;
+	text-align: center;
+	color: yellow;
+	position: absolute;
+	bottom: 6px;
+	left: 0px;
+    width: 255px;
+}
+
+#highnoon {
+    font: 10px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 70px;
+	left: 25px;
+    width: 205px;
+}
+
+#objective {
+    font: 10px;
+	text-align: left;
+	color: black;
+	position: absolute;
+	top: 103px;
+	left: 25px;
+    width: 205px;
+}
+
+
+
+
+
+/****************
+*** OTHER ********
+****************/
+
+a:link {
+color: yellow;
+text-decoration: none;
+}
+
+
+.doneButton {
+	position: absolute;
+    bottom: 60px;
+	left: 98px;
+}
+
+.flip {
+	position:absolute;
+	bottom: 10px;
+	right: 10px;
+	width:15px;
+	height:15px;
+}
+
+#flip {
+	opacity:0;
+	background: url(../img/white_i.png) no-repeat top left;
+	z-index:8000;
+}
+
+#fliprollie {
+	display:none;
+	opacity:0.25;
+	background: url(../img/white_rollie.png) no-repeat top left;
+	z-index:7999;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

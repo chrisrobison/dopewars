@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script type="text/javascript" src='lib/dopewars.js'> </script> 
+      <script type="text/javascript" src='lib/dashboard.js'> </script> 
+      <script type="text/javascript" src='lib/wbd.js'> </script> 
+      <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'>
+      <link rel='stylesheet' type='text/css' href='lib/dopewars.css'>
+      <style type="text/css">
+          body { 
+            font-family:"Open Sans","Helvetica Neue",sans-serif;
+            font-size: 14px;
+          }
+          #map { width:400px; height:400px;
+            right: 0;
+            top: 10px;
+            margin:1em auto;
+         }
+         #debug {
+            width:200px;
+            height:200px;
+            border:1px solid #000099;
+            float:right;
+            overflow-y:scroll;
+         }
+         #yesBtn, .yes, #yes {
+            background-color:#00aa00;
+            left:18%;
+         }
+         .ok, #ok {
+            background-color:#cccccc;
+            left:38%;
+         }
+         .btn {
+            display:inline-block;
+            background-color:#bbb;
+            position:absolute;
+            text-align:center;
+            font-weight:bold;
+            width: 5em;
+            height: 2em;
+            border:0.3em outset #fff;
+            border-radius: 4px;
+            bottom:1em;
+            padding-top:.3em;
+         }
+
+         #run {
+            left:18%;
+         } 
+         .drugName {
+            display:inline-block;
+            width:5em;
+            color:#fff;
+         }
+         .drugPrice {
+            display:inline-block;
+            width:4em;
+            color:#fff;
+         }
+         .drugQty {
+            display:inline-block;
+            width:2em;
+            color:#fff;
+         }
+         .drugBuyMax,.drugBuyOne,.drugSellMax,.drugSellOne {
+            display:inline-block;
+         }
+         #fok {
+            left:38%
+         } 
+         
+         #fight {
+            left:54%; 
+         }
+
+         #noBtn, .no, #no {
+            background-color:#aa0000;
+         }
+
+.button::before, .button::after {
+  position: absolute;
+  content: '';
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.button {
+  display: inline-block;
+  padding: 20px 40px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  vertical-align: middle;
+  font-family: 'Rubik One', sans-serif;
+  text-decoration: none;
+  font-size: 4vw;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  background-color: #3498db;
+}
+.button::before {
+  bottom: -15px;
+  height: 15px;
+  width: 100%;
+  left: 8px;
+  -webkit-transform: skewX(45deg);
+          transform: skewX(45deg);
+  background-color: #196090;
+}
+.button::after {
+  right: -15px;
+  height: 100%;
+  width: 15px;
+  bottom: -8px;
+  -webkit-transform: skewY(45deg);
+          transform: skewY(45deg);
+  background-color: #124364;
+}
+.button:active {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.button:active::before {
+  bottom: -5px;
+  height: 5px;
+  left: 3px;
+}
+.button:active::after {
+  right: -5px;
+  width: 5px;
+  bottom: -3px;
+}
+#market {
+    width:90%;
+    margin-bottom:1em;
+    margin-top:.5em;
+}
+#fuzz { background-color:#0009; color:#eee; }
+#gun { background-color:#0009; color:#eee; }
+#financialInstitution { background-color:#0009; color:#eee; }
+#pockets { background-color:#0009; color:#eee; }
+      </style>
+   </head>
+   <body onload='initWidget()'>
+      <div id='map'>
+         <object data='sf.svg' id='sf' type='image/svg+xml'></object>
+      </div>
+      <div id='debug'></div>
+      <div id="face">
+         <!--IMG SRC="img/Default.png" USEMAP="#jet" NAME="jet" BORDER="0" onmousemove='mousemove(event);' onmouseout='mouseexit(event);'-->
+         <MAP NAME="jet">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("Bronx") SHAPE="POLY" COORDS=" 157,  13,  191,  26,  203,  71,  149,  75,  147,  54,  156,  36,  149,  31,  158,  13">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("Queens") SHAPE="POLY" COORDS=" 158,  82,  241,  79,  236,  178,  179,  163,  179,  151,  174,  137,  162,  143,  137,  107,  158,  83">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("Brooklyn") SHAPE="POLY" COORDS=" 137,  113,  161,  148,  171,  140,  176,  162,  174,  200,  116,  205,  96,  168,  118,  131,  129,  131,  136,  114">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("StatenIsland") SHAPE="POLY" COORDS=" 89,  166,  110,  208,  48,  244,  17,  240,  19,  218,  33,  212,  37,  175,  48,  164,  87,  165">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("NewJersey")  SHAPE="POLY" COORDS=" 22,  9,  153,  12,  115,  94,  106,  129,  88,  159,  44,  162,  32,  176,  28,  208,  15,  218,  13,  238,  8,  229,  10,  21,  21,  9">
+         <AREA onmousemove='mousemove(event);' onmouseout='mouseexit(event);' HREF=JavaScript:jetToDistrict("Manhattan") SHAPE="POLY" COORDS=" 110,  133,  118,  97,  145,  31,  154,  37,  146,  56,  148,  78,  137,  101,  129,  125,  119,  129,  111,  132,  107,  132">
+         <AREA HREF=JavaScript:void() SHAPE="DEFAULT" NOHREF>
+         </MAP>
+
+              <span id="problemText"></span>
+
+              <!--<img id="newgame" class="newgame" src="img/new.png" onclick='initWidget()' /> -->
+
+         <div class='flip' id='fliprollie'></div>
+         <div class='flip' id='flip' onclick='showPrefs();' onmouseover='enterflip(event);' onmouseout='exitflip(event)';></div>  
+         
+      </div>
+
+
+       
+
+
+      <div id="message" class='dialog'>
+          <img id="messageImg" class="messageImg" src=img/message.png >    
+          <span id="messageText"></span>
+          <a class='btn' id='ok' onclick='messageEvents()' href='#ok'>OK</a>
+          <!--img id="okButton" class="ok" src="img/ok.png" onclick='messageEvents()' /--> 
+      </div>
+
+      <div id="ask" class='dialog'>
+          <!--<img id="askImg" class="askImg" src=img/message.png>-->
+          <img class="messageImg" src=img/message.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>  
+          <span id="askMessageText"></span>
+          <a class='btn' id='yes' onclick='askJetToFi(true)'>Yes</a>
+          <a class='btn' id='no' onclick='askJetToFi(false)'>No</a>
+          <!--img id="yesButton" class="yes" src="img/yes.png" onclick='askJetToFi(true)' />
+          <img id="noButton" class="no" src="img/no.png" onclick='askJetToFi(false)' /--> 
+      </div>
+
+      <div id="fuzz" class='dialog'>
+          <img class="messageImg" src=img/fuzz.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>    
+          <span id="fuzzText"></span>
+          <a class='btn' id='run' onclick='fuzzRun()'>Run</a>
+          <a class='btn' id='fok' onclick='fuzzResponse(false)'>OK</a>
+          <a class='btn' id='fight' onclick='fuzzFight()'>Fight</a>
+          <!--img id="run" class="run" src="img/run.png" onclick='fuzzRun()' />
+          <img id="fok" class="fok" src="img/ok.png" onclick='fuzzResponse(false)' />
+          <img id="fight" class="fight" src="img/fight.png" onclick='fuzzFight()' /--> 
+      </div>
+
+      <div id="pockets" class='dialog'>
+          <img class="messageImg" src=img/message.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>    
+          <span id="pocketsText">Would you like to buy a trenchcoat with more pockets for $200?</span>
+          <a class='btn yes' onclick='pocketsResponse(true)'>Yes</a> 
+          <a class='btn no' onclick='pocketsResponse(false)'>No</a> 
+          <!--img class="yes" src="img/yes.png" onclick='pocketsResponse(true)' />
+          <img class="no" src="img/no.png" onclick='pocketsResponse(false)' /--> 
+      </div>
+
+      <div id="gun" class='dialog'>
+          <img class="messageImg" src=img/message.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>    
+          <span id="gunText">Would you like to buy a gun for $400?</span>
+          <a class='btn yes' onclick='gunResponse(true)'>Yes</a> 
+          <a class='btn no' onclick='gunResponse(false)'>No</a> 
+          <!--img class="yes" src="img/yes.png" onclick='gunResponse(true)' />
+          <img class="no" src="img/no.png" onclick='gunResponse(false)' /--> 
+      </div>
+
+
+      <div id="gameover" >
+          <img class="goImg" src=img/shark.png>    
+          <span id="goText">Game Over</span>
+          <span id="goRank"></span>
+          <span id="goFinalCash"></span>
+          <a class='btn' onclick='initWidget()'>OK</a>
+          <!--img class="new" src="img/ok.png" onclick='initWidget()' /-->
+      </div>
+
+
+      <div id="financialInstitution" >
+          <img id="financialInstitutionImg" class="financialInstitutionImg" src=img/shark.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>
+          
+          <span id="fiName">Loan Shark</span>
+
+          <span id="fiBalanceInd">You Owe</span>
+          <span id="fiBalance">$2,000,000</span>
+          <span id="fiCashInd">Your Cash</span>
+          <span id="fiCash">$10,000</span>
+          
+          <span id="fi1">1</span>
+          <img class="fi1take" src="img/buyMax.png" onClick="give('1')" >
+          <img class="fi1give" src="img/sellMax.png" onClick="take('1')" >
+
+          <span id="fi2">100</span>
+          <img class="fi2take" src="img/buyMax.png" onClick="give('100')" >
+          <img class="fi2give" src="img/sellMax.png" onClick="take('100')" >
+
+          <span id="fi3">1000</span>
+          <img class="fi3take" src="img/buyMax.png" onClick="give('1000')" >
+          <img class="fi3give" src="img/sellMax.png" onClick="take('1000')" >
+
+          <span id="fi4">10000</span>
+          <img class="fi4take" src="img/buyMax.png" onClick="give('10000')" >
+          <img class="fi4give" src="img/sellMax.png" onClick="take('10000')" >
+
+          <span id="fi5">All</span>
+          <img class="fi5take" src="img/buyMax.png" onClick="giveAll()" >
+          <img class="fi5give" src="img/sellMax.png" onClick="takeAll()" >
+
+
+
+
+          
+          <img id="fiDoneButton" class="fiDoneButton" src="img/done.png" onclick='askJetToFi(false)' />
+          
+          
+         <div class='flip' id="fliprollie"></div>
+         <div class='flip' id="flip" onclick='handleInfo();' onmouseover='enterflip(event);' onmouseout='exitflip(event)';></div>   
+      </div>
+      <div id="district">
+          <table class='status'>
+            <tr>
+                <td id="cash">0</td>
+                <td rowspan='3' id="districtName"></td>
+                <td id="havepockets"></td>
+            </tr>
+            <tr><td id="bank">0</td><td id="havegun"></td></tr>
+            <tr><td id="shark">0</td><td id="day"></tr>
+        </table>
+          <table id='market'>
+            <tr>
+                <td><span class="drugQty" id="drug1Qty">999</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('1')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('1')"></td>
+                <td><span class="drugName" id="drug1Name">Acid</span></td>
+                <td><span class="drugPrice" id="drug1Price">$2267</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('1')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('1')"></td>
+            </tr>
+            <tr>
+                <td><span class="drugQty" id="drug2Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('2')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('2')"></td>
+                <td><span class="drugName" id="drug2Name">Cocaine</span></td>
+                <td><span class="drugPrice" id="drug2Price">$2267</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('2')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('2')"></td>
+            </tr>
+            <tr>
+                <td><span class="drugQty" id="drug3Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('3')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('3')"></td>
+                <td><span class="drugName" id="drug3Name">Ecstasy</span></td>
+                <td><span class="drugPrice" id="drug3Price">$38000</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('3')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('3')"></td>
+            </tr>
+            <tr>
+                <td><span class="drugQty" id="drug4Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('4')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('4')"></td>
+                <td><span class="drugName" id="drug4Name">PCP</span></td>
+                <td><span class="drugPrice" id="drug4Price">$44000</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('4')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('4')"></td>
+            </tr>
+            <tr>
+                <td><span class="drugQty" id="drug5Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('5')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('5')"></td>
+                <td><span class="drugName" id="drug5Name">Heroin</span></td>
+                <td><span class="drugPrice" id="drug5Price">$58700</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('5')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('5')"></td>
+            </tr>
+
+            <tr>
+                <td><span class="drugQty" id="drug6Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('6')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('6')"></td>
+                <td><span class="drugName" id="drug6Name">Weed</span></td>
+                <td><span class="drugPrice" id="drug6Price">$642</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('6')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('6')"></td>
+            </tr>
+
+            <tr>
+                <td><span class="drugQty" id="drug7Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('7')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('7')"></td>
+                <td><span class="drugName" id="drug7Name">Shrooms</span></td>
+                <td><span class="drugPrice" id="drug7Price">$790</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('7')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('7')"></td>
+            </tr>
+
+            <tr>
+                <td><span class="drugQty" id="drug8Qty">0</span></td>
+                <td><img class="drugBuyMax" src="img/buyMax.png" onClick="buyMaxDrug('8')"> <img class="drugBuyOne" src="img/buyOne.png" onClick="buyOneDrug('8')"></td>
+                <td><span class="drugName" id="drug8Name">Speed</span></td>
+                <td><span class="drugPrice" id="drug8Price">$824</span></td>
+                <td><img class="drugSellOne" src="img/sellOne.png" onClick="sellOneDrug('8')"><img class="drugSellMax" src="img/sellMax.png" onClick="sellMaxDrug('8')"></td>
+            </tr>
+        </table>
+
+         <img id="jetButton" class="jet" src="img/jet.png" onclick='jetTo()'/>
+      	<div class='flip' id="fliprollie"></div>
+      	<div class='flip' id="flip" onclick='handleInfo();' onmouseover='enterflip(event);' onmouseout='exitflip(event)';></div>   
+      </div>
+      <div id='districtBackDrop'></div>
+      <div id="prefs" >
+	      <img src='img/Prefs.png'/>
+	      <span id="homeSite"><a id=homeSiteText href="http://cdr2.com" target="_blank">San Francisco Dopewars by Christopher D. Robison </a></span>
+         <span id="props"><br/>Based on Dopewars (Palm OS) by Matt Lee</span>
+	      <span id="objective">  
+DopeWars: Get rich trading drugs between the neighborhoods of San Francisco.  The cops want to shut you down, you don't have much cash and the loan shark wants a bundle.  Good Luck.
+         </span>
+	      <img class="doneButton" src="img/adone.png" onclick='hidePrefs()' />
+      </div>
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      
+      <script type='text/javascript'>
+         var game = { state: {}};
+         $(document).ready(function() {
+            $.getJSON("hoods.js", function(data) {
+               game.hoods = data;
+               // console.log(data);
+            });
+            
+            fetch("drugs.json?").then(function(response) {
+                if (!response.ok) {
+                    throw new Error("HTTP error, status = " + response.status);
+                }
+                return response.json();
+             }).then(data => {
+                console.dir(data);
+                game.drugs = data;
+            }).catch(function(error) {
+                var p = document.createElement('p');
+                p.appendChild(document.createTextNode('Error: ' + error.message));
+                document.body.appendChild(p);
+            });
+            a = document.getElementById("sf");
+            a.addEventListener("load",function(){
+               var svgDoc = a.contentDocument,
+               hoods = svgDoc.getElementsByClassName("zip"); 
+               
+               for (var i=0; i < hoods.length; i++) {
+                  hoods[i].addEventListener("mouseover", function(){ 
+                     if ($(this)) {
+                        var zip = $(this).attr('class').replace(/zip\sz/, '');
+                        game.state.over = zip;
+//                     $("#debug").html(zip + ":" + game.hoods[zip] + "<br>\n" + $("#debug").html() );
+                     }
+                  },false);
+                  
+                  hoods[i].addEventListener("click", function(){ 
+                     if ($(this)) {
+                        var zip = $(this).attr('class').replace(/zip\sz/, '');
+                        
+                        game.state.current = zip;
+                        jetToDistrict(game.hoods[zip]);
+                        $("#debug").html(zip + ":" + game.hoods[zip] + "<br>\n" + $("#debug").html() );
+                     }
+                  },false);
+               }
+            },false);         
+         });   
+      </script>
+   </body>
+</html>
+

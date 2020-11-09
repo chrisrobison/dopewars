@@ -1,0 +1,41 @@
+[
+    {
+       drug: "Acid",
+       minPrice: 1000,
+       priceRange: 3500
+    },
+    { 
+        drug: "Cocaine",
+        minPrice: 15000,
+        priceRange: 15000
+    },
+    {
+        drug: "Ecstasy",
+        minPrice: 10,
+        priceRange: 50
+    {
+        drug: "PCP",
+        minPrice: 1000,
+        priceRange: 2500
+    },
+    {
+        drug: "Heroin",
+        minPrice: 5000,
+        priceRange: 10000
+    },
+    {
+        drug: "Weed",
+        minPrice: 300,
+        priceRange: 800
+    },
+    {
+        drug: "Shrooms",
+        minPrice: 600,
+        priceRange: 1000
+    },
+    {
+        drug: "Speed",
+        minPrice: 60,
+        priceRange: 200
+    }
+]

@@ -1,0 +1,26 @@
+{
+   "94102": "Tenderloin",
+   "94103": "The Mission",
+   "94105": "SOMA",
+   "94107": "Mission Bay",
+   "94108": "Chinatown",
+   "94109": "Russian Hill",
+   "94110": "Noe Valley",
+   "94111": "Financial District",
+   "94112": "Ingleside",
+   "94114": "The Castro",
+   "94115": "Pacific Heights",
+   "94116": "Outer Sunset",
+   "94117": "Inner Sunset",
+   "94118": "The Richmond",
+   "94121": "Sea Cliff",
+   "94122": "The Sunset",
+   "94123": "The Marina",
+   "94124": "Bayview / Hunters Point",
+   "94127": "West Portal",
+   "94131": "Twin Peaks",
+   "94132": "Lake Merced",
+   "94133": "Fisherman's Wharf",
+   "94134": "Visitation Valley"
+}
+
