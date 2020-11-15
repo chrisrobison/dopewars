@@ -44,6 +44,8 @@
             border-radius: 4px;
             bottom:1em;
             padding-top:.3em;
+            text-shadow: 1px 1px 0px #fff;
+            box-shadow: 0.25em 0.25em 0.25em #0006;
          }
 
          #run {
@@ -194,7 +196,7 @@
       </div>
 
       <div id="fuzz" class='dialog'>
-          <img class="messageImg" src=img/fuzz.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>    
+          <img height='100%' width='100%' src=img/fuzz.png onmousemove='mousemove(event);' onmouseout='mouseexit(event);'>    
           <span id="fuzzText"></span>
           <a class='btn' id='run' onclick='fuzzRun()'>Run</a>
           <a class='btn' id='fok' onclick='fuzzResponse(false)'>OK</a>

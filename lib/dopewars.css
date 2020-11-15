@@ -249,9 +249,8 @@
 }
 
 #gunText {
-	font: 18px;
+	font-size: 2em;
 	text-align: center;
-	color: black;
 	position: absolute;
 	top: 40px;
 	left: 40px;
