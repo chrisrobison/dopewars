@@ -154,7 +154,6 @@
       <div id='map'>
          <object data='sf.svg' id='sf' type='image/svg+xml'></object>
       </div>
-      <div id='debug'></div>
       <div id="face">
          <!--IMG SRC="img/Default.png" USEMAP="#jet" NAME="jet" BORDER="0" onmousemove='mousemove(event);' onmouseout='mouseexit(event);'-->
 
@@ -401,7 +400,6 @@ DopeWars: Get rich trading drugs between the neighborhoods of San Francisco.  Th
                      if ($(this)) {
                         var zip = $(this).attr('class').replace(/zip\sz/, '');
                         game.state.over = zip;
-//                     $("#debug").html(zip + ":" + game.hoods[zip] + "<br>\n" + $("#debug").html() );
                      }
                   },false);
                   
@@ -411,7 +409,6 @@ DopeWars: Get rich trading drugs between the neighborhoods of San Francisco.  Th
                         
                         game.state.current = zip;
                         jetToDistrict(game.hoods[zip]);
-                        $("#debug").html(zip + ":" + game.hoods[zip] + "<br>\n" + $("#debug").html() );
                      }
                   },false);
                }
